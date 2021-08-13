@@ -21,34 +21,34 @@ public class Hero {
         Id = instances.size();
     }
 
+
     public String getName() {
         return name;
-    }
+    };
 
     public int getAge() {
         return age;
-    }
+    };
 
     public ArrayList<String> getSpecial_power() {
         return specialPower;
-    }
+    };
 
     public ArrayList<String> getWeakness() {
         return weakness;
-    }
+    };
     public static ArrayList<Hero> getAll() {
         return instances;
-    }
-    public static void clear() {
+    };
+    public static void clearAllHeros() {
         instances.clear();
-    }
+    };
 
-    public int getId()
-    {
+    public int getId() {
         return Id;
-    }
+    };
 
-    public static Hero find(int id) {
+    public static Hero findById(int id) {
         return instances.get(id - 1);
     }
     public void update(String name, int age, ArrayList<String> specialPower, ArrayList<String> weakness) {
@@ -56,11 +56,11 @@ public class Hero {
         this.age = age;
         this.specialPower = specialPower;
         this.weakness = weakness;
-    }
+    };
     public void deleteHero(){
         instances.remove(Id -1);
-    }
+    };
     public int getSquadId() {
         return squadId;
-    }
-}
+    };
+};
