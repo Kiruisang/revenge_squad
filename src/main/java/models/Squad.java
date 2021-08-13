@@ -29,7 +29,7 @@ public class Squad {
     public String getCause() {
         return cause;
     }
-    public static ArrayList<Squad> all() {
+    public static ArrayList<Squad> getAll() {
         return instances;
     }
     public void setId(int id) { this.id = id;}
@@ -38,7 +38,7 @@ public class Squad {
         return id;
     }
 
-    public static Squad find(int id) {
+    public static Squad findById(int id) {
         return instances.get(id - 1);
     }
 }

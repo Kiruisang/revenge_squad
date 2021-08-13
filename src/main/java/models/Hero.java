@@ -39,7 +39,7 @@ public class Hero {
     public static ArrayList<Hero> getAll() {
         return instances;
     }
-    public static void clear() {
+    public static void clearAllHeros() {
         instances.clear();
     }
 
@@ -48,7 +48,7 @@ public class Hero {
         return Id;
     }
 
-    public static Hero find(int id) {
+    public static Hero findById(int id) {
         return instances.get(id - 1);
     }
     public void update(String name, int age, ArrayList<String> specialPower, ArrayList<String> weakness) {

@@ -16,12 +16,12 @@ public class SquadTest {
     }
 
     public Squad setupSquad(){
-        return new Squad(5, "flash", "save lives");
+        return new Squad(5, "Iron man", "Defeat Iron Monger");
     }
 
     @Test
     public void NewSquadObjectGetsCorrectlyCreated_true() throws Exception{
-        Squad squad = new Squad(5, "flash", "save lives");
+        Squad squad = new Squad(5, "Iron man", "Defeat Iron Monger");
         assertEquals(true, squad instanceof Squad);
     }
 
@@ -34,12 +34,12 @@ public class SquadTest {
     @Test
     public void SquadInstantiatesWithName_true() {
         Squad squad = setupSquad();
-        assertEquals("flash", squad.getName());
+        assertEquals("Iron man", squad.getName());
     }
 
     @Test
     public void SquadInstantiatesWithCause_true() {
         Squad squad = setupSquad();
-        assertEquals("save lives", squad.getCause());
+        assertEquals("Defeat Iron Monger", squad.getCause());
     }
 }
