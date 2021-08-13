@@ -1,30 +1,16 @@
-
-import org.apache.log4j.BasicConfigurator;
 import spark.ModelAndView;
-import spark.template.velocity.VelocityTemplateEngine;
-
+import java.util.ArrayList;
+import spark.QueryParamsMap;
 import java.util.HashMap;
 import java.util.Map;
-
+import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
+import models.*;
 
 public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
         String layout = "templates/layout.vtl";
-
-        BasicConfigurator.configure();
-
-        ProcessBuilder process = new ProcessBuilder();
-        Integer port;
-        if (process.environment().get("PORT") != null) {
-            port = Integer.parseInt(process.environment().get("PORT"));
-        } else {
-            port = 4567;
-        }
-
-        port(port);
-
 
         get("/", (req, res) -> {
             System.out.println(Squad.all());

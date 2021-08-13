@@ -1,19 +1,22 @@
+package models;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Hero {
     private String name;
     private int age;
-    private String specialPower;
-    private  String weakness;
-    private static List<Hero> instances = new ArrayList<Hero>();
+    private ArrayList<String> specialPower = new ArrayList<String>();
+    private  ArrayList<String> weakness = new ArrayList<String>();
+    private static ArrayList<Hero> instances = new ArrayList<Hero>();
     private int Id;
+    private int squadId;
 
-    public Hero(String name, int age, String special_power, String weakness) {
+    public Hero(String name, int age, ArrayList<String> specialPower, ArrayList<String> weakness, int squadId) {
         this.name = name;
         this.age = age;
-        this.specialPower = special_power;
+        this.specialPower = specialPower;
         this.weakness = weakness;
+        this.squadId = squadId;
         instances.add(this);
         Id = instances.size();
     }
@@ -26,14 +29,14 @@ public class Hero {
         return age;
     }
 
-    public String getSpecial_power() {
+    public ArrayList<String> getSpecial_power() {
         return specialPower;
     }
 
-    public String getWeakness() {
+    public ArrayList<String> getWeakness() {
         return weakness;
     }
-    public static List<Hero> all() {
+    public static ArrayList<Hero> getAll() {
         return instances;
     }
     public static void clear() {
@@ -46,24 +49,18 @@ public class Hero {
     }
 
     public static Hero find(int id) {
-        try {
-            return instances.get(id - 1);
-        } catch (IndexOutOfBoundsException exception) {
-            return null;
-        }
+        return instances.get(id - 1);
     }
-
-    public static boolean findHeroByName(String name)
-    {
-        boolean isAvailable = false;
-        for (int i =0; i<instances.size(); i++)
-        {
-            if (name.equalsIgnoreCase(instances.get(i).name) )
-            {
-                isAvailable = true;
-            }
-        }
-
-        return isAvailable;
+    public void update(String name, int age, ArrayList<String> specialPower, ArrayList<String> weakness) {
+        this.name = name;
+        this.age = age;
+        this.specialPower = specialPower;
+        this.weakness = weakness;
+    }
+    public void deleteHero(){
+        instances.remove(Id -1);
+    }
+    public int getSquadId() {
+        return squadId;
     }
 }

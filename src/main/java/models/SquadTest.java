@@ -1,75 +1,45 @@
-import org.junit.Test;
+package models;
 
+import org.junit.Before;
+import org.junit.After;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class SquadTest {
-    @Test
-    public void creates_instanceOfSquad()
-    {
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        assertTrue(squad instanceof Squad);
+
+    @Before
+    public void setUp() throws Exception {
     }
-    @Test
-    public void saves_maxSize_5()
-    {
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        assertEquals(5, squad.getMax_size());
+
+    @After
+    public void tearDown() throws Exception {
     }
-    @Test
-    public void saves_squadName_squad_1()
-    {
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        assertEquals("Squad 1", squad.getName());
-    }
-    @Test
-    public void saves_cause_black_lives_matterl()
-    {
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        assertEquals("black lives matter", squad.getCause());
+
+    public Squad setupSquad(){
+        return new Squad(5, "flash", "save lives");
     }
 
     @Test
-    public void all_returns_all_instancesOfSquad()
-    {
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        Squad squad2 = new Squad(5,"Squad 1","black lives matter");
-        assertTrue(Squad.all().contains(squad));
-        assertTrue(Squad.all().contains(squad2));
-
+    public void NewSquadObjectGetsCorrectlyCreated_true() throws Exception{
+        Squad squad = new Squad(5, "flash", "save lives");
+        assertEquals(true, squad instanceof Squad);
     }
 
     @Test
-    public void clear_emptiesAllSquadsFromList_0() {
-        Squad.clear();
-        assertEquals(Squad.all().size(), 0);
+    public void SquadInstantiatesWithMaxSize_true() {
+        Squad squad = setupSquad();
+        assertEquals(5, squad.getMaxSize());
     }
 
     @Test
-    public void getId_SquadInstantiateWithAnId_1() {
-        Squad.clear();
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        assertEquals(1,squad.getId());
+    public void SquadInstantiatesWithName_true() {
+        Squad squad = setupSquad();
+        assertEquals("flash", squad.getName());
     }
 
     @Test
-    public void find_returnsCategoryWithSameId_secondCategory() {
-        Squad.clear();
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        assertEquals(Squad.find(squad.getId()), squad);
-    }
-
-    @Test
-    public void getSquad_initiallyReturnsEmptyList_ArrayList() {
-        Squad.clear();
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        assertEquals(0, squad.getHeroes().size());
-    }
-
-    @Test
-    public void addsHeroesToList_true() {
-        Squad squad = new Squad(5,"Squad 1","black lives matter");
-        Hero hero = new Hero("Hulk",30,"Strength","Anger issues");
-        squad.addHero(hero);
-        assertTrue(squad.getHeroes().contains(hero));
+    public void SquadInstantiatesWithCause_true() {
+        Squad squad = setupSquad();
+        assertEquals("save lives", squad.getCause());
     }
 }
