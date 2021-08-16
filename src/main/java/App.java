@@ -56,7 +56,7 @@ public class App {
             model.put("heroes",heroes);
             ArrayList<Squad> squads = Squad.getAll();
             model.put("squads",squads);
-            return new ModelAndView(model, "heroes.hbs");
+            return new ModelAndView(model, "heros.hbs");
         },new HandlebarsTemplateEngine());
 
         get("/heroes/list",(request, response) -> {
@@ -103,7 +103,7 @@ public class App {
             model.put("editHero", editHero);
             model.put("squads",squads);
 
-            return  new ModelAndView(model, "heroes.hbs");
+            return  new ModelAndView(model, "heros.hbs");
 
         }, new HandlebarsTemplateEngine());
 

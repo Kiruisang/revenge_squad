@@ -1,0 +1,35 @@
+{{#partial "styles"}}
+    <link rel="stylesheet" href="/css/index.css">
+{{/partial}}
+
+{{#partial "content"}}
+    <div class="container mt-5 text-center w-75">
+        <h1>Let your imagination run wild</h1>
+        <hr>
+        <div class="card mt-5">
+            <div class="card-header">
+                Quoted hero
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <h5 class="text-muted">The truly special ones are not the ones that did extra ordinary things but
+                        they are the ones who found ways to do ordinary tings in
+                        extraordinary ways.
+                        .</h5>
+                    <footer class="blockquote-footer mt-3">St. Augustine<cite title="Source Title"></cite></footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="container offset-md-3 text-center">
+            <div class="row mt-5 ">
+                <div class="col-md-3 mb-1">
+                    <a href="/heroes"><button type="button" class="btn">Add Hero</button></a>
+                </div>
+                <div class="col-md-3">
+                    <a href="/squads"><button type="button" class="btn">Add Squad</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{>layout.hbs}}
