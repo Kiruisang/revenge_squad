@@ -9,152 +9,111 @@ import static groovy.util.GroovyTestCase.assertEquals;
 import static org.junit.Assert.*;
 
 public class HeroTest {
-
     @Before
-    public void setUp() throws Exception {
-    }
+    public void setUp() throws Exception{}
 
     @After
-    public void tearDown() throws Exception {
-        Hero.clearAllHeros();
-    }
+    public void tearUp() throws Exception{Hero.clearAllHeros();};
 
     @Test
-    public void NewHeroObjectGetsCorrectlyCreated_true() throws Exception{
+    public void createsInstanceOfHeroCorrectly_true()throws Exception {
         ArrayList<String> specialPower = new ArrayList<String>();
         ArrayList<String> weakness = new ArrayList<String>();
-        specialPower.add("fly");
-        specialPower.add("super strength");
-        weakness.add("destructive temper");
-        weakness.add("kryptonite");
+        specialPower.add("dance fighting");
+        weakness.add("Venom");
 
-        Hero hero = new Hero("supergirl",23,specialPower,weakness,1);
-        assertEquals(true, hero instanceof Hero);
+        Hero hero = new Hero("Matata", 25, "dance fighting", "Venom");
+        assertEquals(true,hero instanceof Hero);
     }
-
-    public Hero newHero() throws Exception{
+    public Hero newHero() throws Exception {
         ArrayList<String> specialPower = new ArrayList<String>();
         ArrayList<String> weakness = new ArrayList<String>();
-        specialPower.add("fly");
-        specialPower.add("super strength");
-        weakness.add("destructive temper");
-        weakness.add("kryptonite");
+        specialPower.add("dance fighting");
+        weakness.add("Venom");
 
-        Hero hero = new Hero("supergirl",23,specialPower,weakness,1);
-        return  hero;
+
+        Hero newHero = new Hero("Matata", 25, "dance fighting", "Venom");
+        return newHero;
     }
-
-    public Hero anotherHero() throws Exception{
+    public Hero anotherHero() throws Exception {
         ArrayList<String> specialPower = new ArrayList<String>();
         ArrayList<String> weakness = new ArrayList<String>();
-        specialPower.add("fly");
-        specialPower.add("super strength");
-        weakness.add("magic");
-        weakness.add("kryptonite");
+        specialPower.add("dance fighting");
+        weakness.add("Venom");
 
-        Hero anotherHero = new Hero("superman",30,specialPower,weakness,1);
-
-        return  anotherHero;
+        Hero anotherHero = new Hero("Matata", 25, "dance fighting", "Venom");
+        return anotherHero;
+    }
+    @Test
+    public void savedName() throws Exception{
+        Hero hero = newHero();
+        assertEquals("Matata",hero.getName());
+    }
+    @Test
+    public void savedAge() throws Exception {
+        Hero hero = newHero();
+        assertEquals(30,hero.getAge());
+    }
+    @Test
+    public void savedSpecialPowers() throws Exception {
+        Hero hero = newHero();
+        assertTrue(hero.getSpecial_power().contains("dance fighting"));
     }
 
     @Test
-    public void HeroInstanceWithName_true() throws Exception{
+    public void savedWeakness() throws Exception {
         Hero hero = newHero();
-        assertEquals("supergirl",hero.getName());
+        assertTrue(hero.getWeakness().contains("Venom"));
     }
-
     @Test
-    public void HeroInstanceWithAge_true() throws Exception{
+    public void all_returns_all_instancesOfHero() throws Exception{
         Hero hero = newHero();
-        assertEquals(23,hero.getAge());
-    }
-
-    @Test
-    public void HeroInstanceWithspecialPower_true() throws Exception{
-        Hero hero = newHero();
-        assertTrue(hero.getSpecial_power().contains("fly"));
-    }
-
-    @Test
-    public void HeroInstanceWithweakness_true() throws Exception{
-        Hero hero = newHero();
-        assertTrue(hero.getWeakness().contains("kryptonite"));
-    }
-
-    @Test
-    public void AllHerosReturnedCorrevtly_true() throws Exception {
-        Hero hero = newHero();
-        Hero anotherHero = anotherHero();
+        Hero hero1 = anotherHero();
         assertEquals(2,Hero.getAll().size());
-    }
+     }
+     @Test
+     public void allPostsAboutHeros_true() throws Exception {
+        Hero hero = newHero();
+        Hero hero1 = anotherHero();
+        assertTrue(Hero.getAll().contains(hero));
+        assertTrue(Hero.getAll().contains(hero1));
+
+     }
 
     @Test
-    public void AllHerosContainsAllPosts_true() throws Exception {
+    public void allHerosHaveAllPosts_true() throws Exception {
         Hero hero = newHero();
-        Hero anotherHero = anotherHero();
+        Hero hero1 = anotherHero();
 
         assertTrue(Hero.getAll().contains(hero));
-        assertTrue(Hero.getAll().contains(anotherHero));
+        assertTrue(Hero.getAll().contains(hero1));
     }
 
     @Test
-    public void getId_herosInstantiateWithAnID_1() throws Exception{
-        Hero hero =newHero();
+    public void getId_heroInstantiateWithAnId_1() throws Exception {
+        Hero hero = newHero();
         assertEquals(1,hero.getId());
     }
 
     @Test
-    public void findReturnsCorrectPost() throws Exception{
-        Hero hero = newHero();
-        assertEquals(1, Hero.findById(hero.getId()).getId());
+    public void find_returnsCategoryWithSameId_secondCategory() {
+        Hero.clear();
+        Hero hero = new Hero("Hulk1",40,"Strength","Anger issues");
+        assertEquals(Hero.find(hero.getId()), hero);
     }
 
     @Test
-    public void findReturnsCorrectHeroWhenMoreThanOneHeroExists() throws Exception{
-        Hero hero = newHero();
-        Hero anotherHero = anotherHero();
-
-        assertEquals(2,Hero.findById(anotherHero.getId()).getId());
-    };
-
-    @Test
-    public void updateChangesHerosContent() throws Exception{
-        Hero hero = newHero();
-        String formerName = hero.getName();
-        int formerAge = hero.getAge();
-        ArrayList<String> formerspecialPower = hero.getSpecial_power();
-        ArrayList<String> formerweakness = hero.getWeakness();
-        int formerId = hero.getId();
-
-        ArrayList<String> specialPower = new ArrayList<String>();
-        ArrayList<String> weakness = new ArrayList<String>();
-        specialPower.add("risk taker");
-        specialPower.add("fast");
-        weakness.add("trust too much");
-        weakness.add("magic");
-
-        hero.update("clare",19,specialPower,weakness);
-
-        assertEquals(formerId, hero.getId());
-        assertNotEquals(formerName, hero.getName());
-        assertNotEquals(formerAge,hero.getAge());
+    public void find_hero_by_name() {
+        Hero.clear();
+        Hero hero = new Hero("Hulk1",40,"Strength","Anger issues");
+        assertTrue(Hero.find("Hulk1"));
     }
 
     @Test
-    public void deleteDeletesASpecificHero() throws Exception {
-        Hero hero = newHero();
-        Hero anotherHero = anotherHero();
-        hero.deleteHero();
-        assertEquals(1,Hero.getAll().size());
-        assertEquals(Hero.getAll().get(0).getId(),2);
+    public void find_returnsNullWhenNoTaskFound_null() {
+        assertTrue(Hero.find(1000) == null);
     }
 
-    @Test
-    public void deleteAllHerosDeletesAllHeros() throws Exception{
-        Hero hero = newHero();
-        Hero anotherHero = anotherHero();
 
-        Hero.clearAllHeros();
-        assertEquals(0,Hero.getAll().size());
-    }
+
 }
